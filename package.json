@@ -1,0 +1,32 @@
+{
+  "name": "vue3-element",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@antv/g2plot": "^2.4.26",
+    "@element-plus/icons-vue": "^2.1.0",
+    "axios": "^1.3.4",
+    "core-js": "^3.29.0",
+    "element-plus": "^2.2.34",
+    "js-base64": "^3.7.5",
+    "lru-cache": "^10.2.2",
+    "pinia": "^2.0.33",
+    "qs": "^6.12.1",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "@vue/compiler-sfc": "^3.2.47"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
