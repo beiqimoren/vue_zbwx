@@ -2,7 +2,7 @@
 	<div>
 		<!-- 顶部 -->
 		<div class="sidebar-top">
-			<div>星巴克后台管理</div>
+			<div>装备维修APP后台管理</div>
 			<div @click="signOut">退出</div>
 		</div>
 		<div class="sidebar-cont">
