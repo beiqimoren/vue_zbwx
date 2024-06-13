@@ -103,7 +103,7 @@ export default{
 				const TAB = new proxy.$request(proxy.$urls.m().gettable).modeget()
 				const ORDER = new proxy.$request(proxy.$urls.m().obtainorder + '?' + query).modeget()
 				const res = await Promise.all([TAB,ORDER])
-				// console.log(res)
+				console.log(res)
 				oper_data.options = res[0].data.data
 				oper_data.table_data = res[1].data.data.result
 				oper_data.total = res[1].data.data.total

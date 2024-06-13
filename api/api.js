@@ -1,6 +1,8 @@
 // 放置所有的请求接口地址
 
 const url = 'https://meituan.thexxdd.cn/apit/'
+const myurl = ' http://localhost:8000/'
+//const url = ' 192.168.216.215:8000/'
 
 const urls = class{
 	static m(){
@@ -8,6 +10,8 @@ const urls = class{
 		const register = `${url}register`
 		// 登录接口
 		const login = `${url}login`
+		// 后台登录接口
+		const adminlogin = `${myurl}adminlogin/`
 		// 用户列表
 		const pulluserlist = `${url}pulluserlist`
 		// 获取桌号
@@ -48,6 +52,7 @@ const urls = class{
 		return{
 			register,
 			login,
+			adminlogin,
 			pulluserlist,
 			gettable,
 			obtainorder,

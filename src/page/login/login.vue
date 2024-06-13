@@ -2,7 +2,7 @@
 	<div id="backcont">
 		<div class="meituan-content">
 			<div class="login-cont">
-				<div class="meituan-title">扫码点餐商户端</div>
+				<div class="meituan-title">装备维修APP后台</div>
 				<div class="meituan-user">
 					<p>账号</p>
 					<el-input clearable v-model="account" class="inptflex" placeholder="请输入账号" />
@@ -39,13 +39,15 @@ export default{
 			user.load = true
 			const obj = {account:user.account,password:user.password}
 			try{
-				const res = await new proxy.$request(proxy.$urls.m().login,obj).modepost()
+				const res = await new proxy.$request(proxy.$urls.m().adminlogin,obj).modepost()
 				if(res.status != 200){
-					new proxy.$tips(res.data.msg,'warning').mess_age()
+					console.log(res)
+					new proxy.$tips(res.data,'warning').mess_age()
 				}else{
 					// 跳转到内容页面
+					console.log(res)
 					let ids = '1'
-					localStorage.setItem('token',res.data.data.token)
+					//localStorage.setItem('token',res.data.data.token)
 					localStorage.setItem('menuid',JSON.stringify(ids))
 					router.push({name:'index'})
 				}
