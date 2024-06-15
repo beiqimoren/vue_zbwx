@@ -14,8 +14,10 @@ const urls = class{
 		const admin_login = `${myurl}admin_login/`
 		// 用户列表
 		const pulluserlist = `${url}pulluserlist`
-		// 获取维修需求
+		// 获取维修需求列表
 		const admin_getrepair = `${myurl}admin_getrepair/` 
+		// 获取单个维修需求
+		const admin_viewrepair = `${myurl}admin_viewrepair/` 
 		// 获取桌号
 		const gettable = `${url}gettable`
 		// 获取订单
@@ -56,6 +58,7 @@ const urls = class{
 			login,
 			admin_login,
 			admin_getrepair,
+			admin_viewrepair,
 			pulluserlist,
 			gettable,
 			obtainorder,

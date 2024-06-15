@@ -20,9 +20,9 @@
 			</div> -->
 			<!-- 下拉列表 -->
 			<div class="quotation-query">
-				<div class="quotation-title">类型</div>
+				<div class="quotation-title">状态</div>
 				<div>
-					<el-select v-model="sevalue" placeholder="请选择">
+					<el-select v-model="sevalue" placeholder="请选择" style="width: 200px;">
 					    <el-option
 					      v-for="item in options"
 					      :key="item.value"
@@ -39,18 +39,20 @@
 		<!-- 表格 -->
 		<div>
 			<el-table :data="table_data" style="width: 100%" >
-				<el-table-column prop="contact" label="联系人" align="center" min-width="100" />
+				<el-table-column prop="contact" label="联系人" align="center" min-width="60" />
 				<el-table-column prop="unit" label="单位" align="center" min-width="100" />
-				<el-table-column prop="phone" label="联系电话" align="center" min-width="100" />
-                <el-table-column prop="city" label="装备所在地" align="center" min-width="100" />
-				<el-table-column prop="type" label="装备型号" align="center" min-width="100" />
-				<el-table-column prop="fault" label="故障现象" align="center" min-width="100" />
-				<el-table-column label="详情" align="center" min-width="100">
+				<el-table-column prop="phone" label="联系电话" align="center" min-width="120" />
+                <!-- <el-table-column prop="city" label="装备所在地" align="center" min-width="100" /> -->
+                <el-table-column prop="equipment" label="装备名称" align="center" min-width="100" />
+				<!-- <el-table-column prop="type" label="装备型号" align="center" min-width="100" /> -->
+				<el-table-column prop="fault" label="故障现象" align="center" min-width="150" />
+                <el-table-column prop="state" label="当前状态" align="center" min-width="80" />
+				<el-table-column label="详情" align="center" min-width="60">
 					<template #default="scope">
-						<el-button size="small" :loading="scope.$index == deta_load ? true : false" @click="detailed(scope.$index,scope.row._id)">详细</el-button>
+						<el-button size="small" :loading="scope.$index == deta_load ? true : false" @click="detailed(scope.$index,scope.row.id)">详细</el-button>
 					</template>
 				</el-table-column>
-				<el-table-column label="状态" align="center" min-width="100">
+				<el-table-column label="操作" align="center" min-width="60">
 					<template #default="scope">
 						<el-button size="small" v-if="scope.row.transac_status == 'success'" disabled type="danger">已受理</el-button>
 						<el-button size="small" v-else type="danger">未受理</el-button>
@@ -81,15 +83,18 @@ export default{
 		const Loading = ref(true)
 		let dialog = ref()
         const options= [{
-          value: '已处理',
-          label: '已处理'
+          value: '待审核',
+          label: '待审核'
         }, {
-          value: '待受理',
-          label: '待受理'
+          value: '处理中',
+          label: '处理中'
+        }, {
+          value: '已完成',
+          label: '已完成'
         }]
 		const oper_data = reactive({
 			time:[],//选中的时间
-			sevalue:'',//选中的桌号
+			sevalue:'',//选中的状态
 			//options:[],//桌号的数据
 			table_data:[],// 表格数据
 			page:0,//第一页的数据
@@ -110,14 +115,13 @@ export default{
 			})
 			try{
                 const adminID = localStorage.getItem('adminID')
-                const res = await new proxy.$request(proxy.$urls.m().admin_getrepair+ '?' + 'page='+oper_data.page+'&adminID='+adminID).modeget()
+                const res = await new proxy.$request(proxy.$urls.m().admin_getrepair+ '?' + 'page='+oper_data.page+'&adminID='+adminID+'&state='+oper_data.sevalue).modeget()
 				if(res.status != 200){
 					new proxy.$tips(res.data,'warning').mess_age()
 				}else{
 					//console.log(res)
                     oper_data.table_data = res.data.result
 				    //oper_data.total = res.data.result.length
-                    console.log("oper_datatotal=",res.data.result.length)
 				    Loading.value = false
 				}
 			}catch(e){
@@ -134,9 +138,11 @@ export default{
 		//点击详细菜单传值给子组件
 		const detailed = async(index,id)=>{
 			oper_data.deta_load = index
+            //console.log("repairid=",id)
 			try{
-				const res = await new proxy.$request(proxy.$urls.m().vieworder + '?id=' + id).modeget()
-				dialog.value.popup(res.data.data)
+				const res = await new proxy.$request(proxy.$urls.m().admin_viewrepair + '?id=' + id).modeget()
+                 console.log(res.result)
+				dialog.value.popup(res.result)
 				oper_data.deta_load = -1
 			}catch(e){
 				oper_data.deta_load = -1
