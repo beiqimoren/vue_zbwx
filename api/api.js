@@ -11,9 +11,11 @@ const urls = class{
 		// 登录接口
 		const login = `${url}login`
 		// 后台登录接口
-		const adminlogin = `${myurl}adminlogin/`
+		const admin_login = `${myurl}admin_login/`
 		// 用户列表
 		const pulluserlist = `${url}pulluserlist`
+		// 获取维修需求
+		const admin_getrepair = `${myurl}admin_getrepair/` 
 		// 获取桌号
 		const gettable = `${url}gettable`
 		// 获取订单
@@ -52,7 +54,8 @@ const urls = class{
 		return{
 			register,
 			login,
-			adminlogin,
+			admin_login,
+			admin_getrepair,
 			pulluserlist,
 			gettable,
 			obtainorder,

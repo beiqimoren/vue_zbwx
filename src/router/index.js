@@ -10,13 +10,18 @@ const routes = [
 		path:'/index',
 		name:'index',
 		component:()=>import(/*webpackChunkName:'Lndex'*/ '@/page/index/index.vue'),
-		redirect:'/data',
+		redirect:'/repair',
 		// 二级路由
 		children:[
 			{//用户列表
 				path:'/userpage',
 				name:'userpage',
 				component:()=>import(/*webpackChunkName:'Userpage'*/ '@/page/user-page/user.vue')
+			},
+			{//装备维修需求
+				path:'/repair',
+				name:'repair',
+				component:()=>import(/*webpackChunkName:'Repair'*/ '@/page/repair/repair.vue')
 			},
 			{//订单管理
 				path:'/order',

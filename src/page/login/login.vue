@@ -39,14 +39,16 @@ export default{
 			user.load = true
 			const obj = {account:user.account,password:user.password}
 			try{
-				const res = await new proxy.$request(proxy.$urls.m().adminlogin,obj).modepost()
+				const res = await new proxy.$request(proxy.$urls.m().admin_login,obj).modepost()
 				if(res.status != 200){
 					console.log(res)
 					new proxy.$tips(res.data,'warning').mess_age()
 				}else{
-					// 跳转到内容页面
-					console.log(res)
+					// 跳转到内容页面	
+					
 					let ids = '1'
+					console.log(res)
+					localStorage.setItem('adminID',res.data)
 					//localStorage.setItem('token',res.data.data.token)
 					localStorage.setItem('menuid',JSON.stringify(ids))
 					router.push({name:'index'})

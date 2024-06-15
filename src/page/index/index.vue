@@ -46,36 +46,43 @@ export default{
 	setup(){
 		const router = useRouter()
 		const Array = [
-			{
+		    {
 				id:'1',
+				icon:CreditCard,
+				title:'装备维修需求',
+				router:'repair',
+				Subclass:[]//是否有二级三级等等菜单
+			},
+			{
+				id:'2',
 				icon:Histogram,
 				title:'数据分析',
 				router:'data',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'2',
+				id:'3',
 				icon:UserFilled,
 				title:'用户列表',
 				router:'userpage',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'3',
+				id:'4',
 				icon:CreditCard,
 				title:'订单管理',
 				router:'order',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'4',
+				id:'5',
 				icon:Bowl,
 				title:'菜品管理',
 				router:'dishes',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'5',
+				id:'6',
 				icon:UserFilled,
 				title:'员工管理',
 				router:'',
