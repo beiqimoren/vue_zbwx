@@ -54,8 +54,12 @@
 				</el-table-column>
 				<el-table-column label="操作" align="center" min-width="60">
 					<template #default="scope">
-						<el-button size="small" v-if="scope.row.transac_status == 'success'" disabled type="danger">已受理</el-button>
-						<el-button size="small" v-else type="danger">未受理</el-button>
+						<!-- <el-button size="small" v-if="scope.row.transac_status == 'success'" disabled type="danger">已受理</el-button>
+						<el-button size="small" v-else type="danger">未受理</el-button> -->
+                        <el-button size="small"  type="danger"  v-if="scope.row.state == '已完成'" disabled>已处理</el-button>
+                        <el-button size="small"  type="danger" @click="change_state(scope.row.id,scope.row.state)" v-else-if="scope.row.state == '待审核'" >受理</el-button>
+                        <el-button size="small" @click="change_state(scope.row.id,scope.row.state)" v-else type="danger">结单</el-button>
+                        
 					</template>
 				</el-table-column>
 			</el-table>
@@ -91,6 +95,9 @@ export default{
         }, {
           value: '已完成',
           label: '已完成'
+        }, {
+          value: '',
+          label: '全部'
         }]
 		const oper_data = reactive({
 			time:[],//选中的时间
@@ -141,9 +148,25 @@ export default{
             //console.log("repairid=",id)
 			try{
 				const res = await new proxy.$request(proxy.$urls.m().admin_viewrepair + '?id=' + id).modeget()
-                 console.log(res.result)
-				dialog.value.popup(res.result)
+				dialog.value.popup(res.data.result)
 				oper_data.deta_load = -1
+			}catch(e){
+				oper_data.deta_load = -1
+				new proxy.$tips('服务器发生错误','error').mess_age()
+			}
+		}
+        //处理维修需求申请单状态
+        const change_state = async(id,state)=>{
+            //console.log("repairid=",id)
+            let state_temp=''
+            if(state=="待审核"){
+                state_temp="处理中"
+            }else{
+                state_temp="已完成"
+            }
+			try{
+				const res = await new proxy.$request(proxy.$urls.m().admin_changerepairstate + '?id=' + id + '&state='+state_temp).modeget()
+				get_order()
 			}catch(e){
 				oper_data.deta_load = -1
 				new proxy.$tips('服务器发生错误','error').mess_age()
@@ -154,7 +177,7 @@ export default{
 		function queryFun(){
 			get_order()
 		}
-		return {...toRefs(oper_data),currentchange,detailed,dialog,queryFun,Loading,options}
+		return {...toRefs(oper_data),currentchange,detailed,change_state,dialog,queryFun,Loading,options}
 	}
 }
 </script>

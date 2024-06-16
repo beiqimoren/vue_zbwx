@@ -2,23 +2,27 @@
 	<el-dialog
 		class="hei_dialog"
 	    v-model="res.dialogVisible"
-	    title="详细菜单"
+	    title="维修需求详情"
 	    width="500px"
 	    center
 	  >
-      <div>hehe</div>
-	  <!-- <div class="menu-padd" v-for="(item,index) in res.menu_data" :key='index'>
-		  <div class="Menu-details menu-span">
-			  <span>第{{res.menu_data.length - index}}次下单</span>
+      <div class="menu-padd" >   
+          <div class="Menu-details menu-span">
+			  <span>申请人：{{res.menu_data.unit}} {{res.menu_data.contact}} {{res.menu_data.phone}}</span>
 		  </div>
-		  <div v-for="(item_menu,index_menu) in item.goods_list" :key="index_menu">
-			  <div class="Menu-details menu-margin">
-				  <span>{{item_menu.name}}</span>
-				  <span v-if="item_menu.good_specs != ''">{{item_menu.good_specs}}</span>
-				  <span>{{item_menu.quantity}}{{item_menu.unit}}</span>
-			  </div>
+          <div class="Menu-details menu-span">
+			  <span>装备型号：{{res.menu_data.equipment}} {{res.menu_data.type}}</span>
 		  </div>
-	  </div>   -->
+          <div class="Menu-details menu-span">
+			  <span>装备所在地：{{res.menu_data.province}} {{res.menu_data.city}} {{res.menu_data.address}}</span>
+		  </div>
+          <div class="Menu-details menu-span">
+			  <span>故障现象：{{res.menu_data.fault}}</span>
+		  </div>
+          <div class="Menu-details menu-span">
+			  <span>当前状态：{{res.menu_data.state}}</span>
+		  </div>
+	  </div>  
 	  </el-dialog>
 </template>
 
@@ -28,13 +32,14 @@ export default{
 	setup(){
 		const res = reactive({
 			dialogVisible:false,
-			menu_data:[]
+			menu_data:{}
 		})
 		
 		// 被父组件调用的方法，并且携带值
 		function popup(val){
 			res.dialogVisible = true
-			res.menu_data = val
+			res.menu_data = val[0]
+            //console.log("res.menu_data=",res.menu_data.address)
 		}
 		
 		return{res,popup}

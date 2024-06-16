@@ -18,6 +18,10 @@ const urls = class{
 		const admin_getrepair = `${myurl}admin_getrepair/` 
 		// 获取单个维修需求
 		const admin_viewrepair = `${myurl}admin_viewrepair/` 
+		// 修改维修申请单状态
+		const admin_changerepairstate = `${myurl}admin_changerepairstate/`
+
+		admin_changerepairstate
 		// 获取桌号
 		const gettable = `${url}gettable`
 		// 获取订单
@@ -59,6 +63,7 @@ const urls = class{
 			admin_login,
 			admin_getrepair,
 			admin_viewrepair,
+			admin_changerepairstate,
 			pulluserlist,
 			gettable,
 			obtainorder,
