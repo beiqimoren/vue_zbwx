@@ -51,7 +51,8 @@
 			<el-pagination background layout="prev, pager, next"
 			 :total="total"
 			 :hide-on-single-page="true"
-			 @current-change="currentchange"
+             @update:current-page="currentchange"
+             :current-page="currentPage"
 			 >
 			</el-pagination>
 		</div>
@@ -83,12 +84,13 @@ export default{
           value: '',
           label: '全部'
         }]
+        const currentPage = ref(1);
 		const oper_data = reactive({
 			time:[],//选中的时间
 			sevalue:'',//选中的状态
 			//options:[],//桌号的数据
 			table_data:[],// 表格数据
-			page:0,//第一页的数据
+			page:1,//第一页的数据
 			total:0,//数据总得条数
 			deta_load:-1
 		})
@@ -101,18 +103,18 @@ export default{
 		async function get_order(){
 			const query = qs.stringify({
 				page:oper_data.page,
-				table_number:oper_data.sevalue,
-				order_time:JSON.stringify(oper_data.time)
+                adminID :localStorage.getItem('adminID'),
+				state:oper_data.sevalue,
 			})
 			try{
-                const adminID = localStorage.getItem('adminID')
-                const res = await new proxy.$request(proxy.$urls.m().admin_getsupport+ '?' + 'page='+oper_data.page+'&adminID='+adminID+'&state='+oper_data.sevalue).modeget()
+               
+                const res = await new proxy.$request(proxy.$urls.m().admin_getsupport+ '?' + query).modeget()
 				if(res.status != 200){
 					new proxy.$tips(res.data,'warning').mess_age()
 				}else{
 					//console.log(res)
                     oper_data.table_data = res.data.result
-				    //oper_data.total = res.data.result.length
+				    oper_data.total = res.data.total
 				    Loading.value = false
 				}
 			}catch(e){
@@ -122,10 +124,10 @@ export default{
 		
 		// 分页触发事件
 		function currentchange(e){
-			oper_data.page = e - 1
+			oper_data.page = e
+            currentPage.value = e
 			get_order()
 		}
-		
 		//点击详细菜单传值给子组件
 		const detailed = async(index,id)=>{
 			oper_data.deta_load = index
@@ -159,9 +161,11 @@ export default{
 		
 		// 查询
 		function queryFun(){
+            oper_data.page = 1
+            currentPage.value=1
 			get_order()
 		}
-		return {...toRefs(oper_data),currentchange,detailed,change_state,dialog,queryFun,Loading,options}
+		return {...toRefs(oper_data),currentchange,detailed,change_state,dialog,queryFun,Loading,options,currentPage}
 	}
 }
 </script>

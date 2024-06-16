@@ -103,10 +103,11 @@ export default{
 				const TAB = new proxy.$request(proxy.$urls.m().gettable).modeget()
 				const ORDER = new proxy.$request(proxy.$urls.m().obtainorder + '?' + query).modeget()
 				const res = await Promise.all([TAB,ORDER])
-				console.log(res)
+				//console.log(res)
 				oper_data.options = res[0].data.data
 				oper_data.table_data = res[1].data.data.result
 				oper_data.total = res[1].data.data.total
+				console.log("order_table=",oper_data.table_data)
 				Loading.value = false
 			}catch(e){
 				new proxy.$tips('服务器发生错误','error').mess_age()

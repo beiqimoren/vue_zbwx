@@ -20,6 +20,9 @@
 			  <span>故障现象：{{res.menu_data.fault}}</span>
 		  </div>
           <div class="Menu-details menu-span">
+			  <span>备注：{{res.menu_data.notes}}</span>
+		  </div>
+          <div class="Menu-details menu-span">
 			  <span>当前状态：{{res.menu_data.state}}</span>
 		  </div>
 	  </div>  

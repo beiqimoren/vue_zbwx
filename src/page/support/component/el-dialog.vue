@@ -20,6 +20,9 @@
 			  <span>支援事项：{{res.menu_data.thing}}</span>
 		  </div>
           <div class="Menu-details menu-span">
+			  <span>备注：{{res.menu_data.notes}}</span>
+		  </div>
+          <div class="Menu-details menu-span">
 			  <span>当前状态：{{res.menu_data.state}}</span>
 		  </div>
 	  </div>  
