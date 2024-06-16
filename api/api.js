@@ -18,10 +18,15 @@ const urls = class{
 		const admin_getrepair = `${myurl}admin_getrepair/` 
 		// 获取单个维修需求
 		const admin_viewrepair = `${myurl}admin_viewrepair/` 
+		// 获取技术支援列表
+		const admin_getsupport = `${myurl}admin_getsupport/` 
+		// 获取单个技术支援
+		const admin_viewsupport = `${myurl}admin_viewsupport/`
 		// 修改维修申请单状态
 		const admin_changerepairstate = `${myurl}admin_changerepairstate/`
+		// 修改维修申请单状态
+		const admin_changesupportstate = `${myurl}admin_changesupportstate/`
 
-		admin_changerepairstate
 		// 获取桌号
 		const gettable = `${url}gettable`
 		// 获取订单
@@ -64,6 +69,9 @@ const urls = class{
 			admin_getrepair,
 			admin_viewrepair,
 			admin_changerepairstate,
+			admin_getsupport,
+			admin_viewsupport,
+			admin_changesupportstate,
 			pulluserlist,
 			gettable,
 			obtainorder,

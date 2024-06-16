@@ -49,12 +49,19 @@ export default{
 		    {
 				id:'1',
 				icon:CreditCard,
-				title:'装备维修需求',
+				title:'装备维修申请',
 				router:'repair',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
 				id:'2',
+				icon:CreditCard,
+				title:'技术支援申请',
+				router:'support',
+				Subclass:[]//是否有二级三级等等菜单
+			},
+			{
+				id:'7',
 				icon:Histogram,
 				title:'数据分析',
 				router:'data',

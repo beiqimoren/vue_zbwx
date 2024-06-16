@@ -1,23 +1,7 @@
 <template>
 	<div class="ordering" v-loading.fullscreen.lock="Loading">
-		<div class="heading">装备维修申请</div>
+		<div class="heading">技术支援申请</div>
 		<div class="query-view">
-			<!-- 日期选择器
-			<div class="quotation-query">
-				<div class="quotation-title">交易时间</div>
-				<div>
-					<el-date-picker
-						v-model="time"
-						type="daterange"
-						unlink-panels
-						range-separator="至"
-						start-placeholder="开始时间"
-						end-placeholder="结束时间"
-						value-format="YYYY-MM-DD"
-					  >
-					</el-date-picker>
-				</div>
-			</div> -->
 			<!-- 下拉列表 -->
 			<div class="quotation-query">
 				<div class="quotation-title">状态</div>
@@ -43,9 +27,9 @@
 				<el-table-column prop="unit" label="单位" align="center" min-width="100" />
 				<el-table-column prop="phone" label="联系电话" align="center" min-width="120" />
                 <!-- <el-table-column prop="city" label="装备所在地" align="center" min-width="100" /> -->
-                <el-table-column prop="equipment" label="装备名称" align="center" min-width="100" />
+                <el-table-column prop="date" label="申请日期" align="center" min-width="100" />
 				<!-- <el-table-column prop="type" label="装备型号" align="center" min-width="100" /> -->
-				<el-table-column prop="fault" label="故障现象" align="center" min-width="150" />
+				<el-table-column prop="thing" label="支援事项" align="center" min-width="150" />
                 <el-table-column prop="state" label="当前状态" align="center" min-width="80" />
 				<el-table-column label="详情" align="center" min-width="60">
 					<template #default="scope">
@@ -122,7 +106,7 @@ export default{
 			})
 			try{
                 const adminID = localStorage.getItem('adminID')
-                const res = await new proxy.$request(proxy.$urls.m().admin_getrepair+ '?' + 'page='+oper_data.page+'&adminID='+adminID+'&state='+oper_data.sevalue).modeget()
+                const res = await new proxy.$request(proxy.$urls.m().admin_getsupport+ '?' + 'page='+oper_data.page+'&adminID='+adminID+'&state='+oper_data.sevalue).modeget()
 				if(res.status != 200){
 					new proxy.$tips(res.data,'warning').mess_age()
 				}else{
@@ -147,7 +131,7 @@ export default{
 			oper_data.deta_load = index
             //console.log("repairid=",id)
 			try{
-				const res = await new proxy.$request(proxy.$urls.m().admin_viewrepair + '?id=' + id).modeget()
+				const res = await new proxy.$request(proxy.$urls.m().admin_viewsupport + '?id=' + id).modeget()
 				dialog.value.popup(res.data.result)
 				oper_data.deta_load = -1
 			}catch(e){
@@ -165,7 +149,7 @@ export default{
                 state_temp="已完成"
             }
 			try{
-				const res = await new proxy.$request(proxy.$urls.m().admin_changerepairstate + '?id=' + id + '&state='+state_temp).modeget()
+				const res = await new proxy.$request(proxy.$urls.m().admin_changesupportstate + '?id=' + id + '&state='+state_temp).modeget()
 				get_order()
 			}catch(e){
 				oper_data.deta_load = -1

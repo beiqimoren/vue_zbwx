@@ -2,7 +2,7 @@
 	<el-dialog
 		class="hei_dialog"
 	    v-model="res.dialogVisible"
-	    title="装备维修申请详情"
+	    title="技术支援申请详情"
 	    width="500px"
 	    center
 	  >
@@ -11,13 +11,13 @@
 			  <span>申请人：{{res.menu_data.unit}} {{res.menu_data.contact}} {{res.menu_data.phone}}</span>
 		  </div>
           <div class="Menu-details menu-span">
-			  <span>装备型号：{{res.menu_data.equipment}} {{res.menu_data.type}}</span>
+			  <span>申请日期：{{res.menu_data.date}}</span>
 		  </div>
           <div class="Menu-details menu-span">
-			  <span>装备所在地：{{res.menu_data.province}} {{res.menu_data.city}} {{res.menu_data.address}}</span>
+			  <span>地址：{{res.menu_data.province}} {{res.menu_data.city}} {{res.menu_data.address}}</span>
 		  </div>
           <div class="Menu-details menu-span">
-			  <span>故障现象：{{res.menu_data.fault}}</span>
+			  <span>支援事项：{{res.menu_data.thing}}</span>
 		  </div>
           <div class="Menu-details menu-span">
 			  <span>当前状态：{{res.menu_data.state}}</span>

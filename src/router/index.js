@@ -18,10 +18,15 @@ const routes = [
 				name:'userpage',
 				component:()=>import(/*webpackChunkName:'Userpage'*/ '@/page/user-page/user.vue')
 			},
-			{//装备维修需求
+			{//装备维修申请
 				path:'/repair',
 				name:'repair',
 				component:()=>import(/*webpackChunkName:'Repair'*/ '@/page/repair/repair.vue')
+			},
+			{//技术支援申请
+				path:'/support',
+				name:'support',
+				component:()=>import(/*webpackChunkName:'Support'*/ '@/page/support/support.vue')
 			},
 			{//订单管理
 				path:'/order',
