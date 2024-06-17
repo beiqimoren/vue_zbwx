@@ -61,7 +61,7 @@
 
 <script>
 import {reactive,toRefs,onMounted,getCurrentInstance,ref} from 'vue'
-import Dialog from './component/el-dialog.vue'
+// import Dialog from './component/el-dialog.vue'
 import qs from 'qs';
 export default{
 	components:{Dialog},

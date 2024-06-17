@@ -61,46 +61,53 @@ export default{
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'7',
+				id:'3',
+				icon:CreditCard,
+				title:'用户咨询解答',
+				router:'consult',
+				Subclass:[]//是否有二级三级等等菜单
+			},
+			{
+				id:'4',
 				icon:Histogram,
 				title:'数据分析',
 				router:'data',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'3',
+				id:'5',
 				icon:UserFilled,
 				title:'用户列表',
 				router:'userpage',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'4',
+				id:'6',
 				icon:CreditCard,
 				title:'订单管理',
 				router:'order',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'5',
+				id:'7',
 				icon:Bowl,
 				title:'菜品管理',
 				router:'dishes',
 				Subclass:[]//是否有二级三级等等菜单
 			},
 			{
-				id:'6',
+				id:'8',
 				icon:UserFilled,
 				title:'员工管理',
 				router:'',
 				Subclass:[
 					{
-						id:'5-1',
+						id:'8-1',
 						title:'员工详情',
 						router:'role',
 					},
 					{
-						id:'5-2',
+						id:'8-2',
 						title:'其他页面',
 						router:'',
 					}

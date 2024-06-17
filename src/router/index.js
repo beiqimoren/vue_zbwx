@@ -28,6 +28,11 @@ const routes = [
 				name:'support',
 				component:()=>import(/*webpackChunkName:'Support'*/ '@/page/support/support.vue')
 			},
+			{//用户咨询解答
+				path:'/consult',
+				name:'consult',
+				component:()=>import(/*webpackChunkName:'Consult'*/ '@/page/consult/consult.vue')
+			},
 			{//订单管理
 				path:'/order',
 				name:'order',
